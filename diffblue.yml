@@ -1,0 +1,185 @@
+# Tested on Deeptest release 1.12.0
+testCmd: ls
+cbmcArguments:
+  cover-function-only: false
+  do-not-test-methods-with-access: [ private ]
+  java-generate-no-comments: true
+units:
+  - target:
+    - dir: target/classes
+      file: org/opentripplanner/common/RepeatingTimePeriod.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/common/RepeatingTimePeriod.java
+  - target:
+    - dir: target/classes
+      file: org/opentripplanner/common/Namer.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/common/Namer.java
+  - target:
+    - dir: target/classes
+      file: org/opentripplanner/common/LuceneIndex.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/common/LuceneIndex.java
+    # Child of LuceneIndex.class
+    - dir: target/classes
+      file: org/opentripplanner/model/Stop.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/model/Stop.java
+    # Child of LuceneIndex.class
+    - dir: target/classes
+      file: org/opentripplanner/profile/StopCluster.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/profile/StopCluster.java
+    # Child of LuceneIndex.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/edgetype/StreetEdge.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/edgetype/StreetEdge.java
+    # Child of LuceneIndex.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/graph/GraphIndex.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/graph/GraphIndex.java
+    # Child of LuceneIndex.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/vertextype/StreetVertex.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/vertextype/StreetVertex.java
+  - target:
+    - dir: target/classes
+      file: org/opentripplanner/common/StreetUtils.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/common/StreetUtils.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/common/geometry/Subgraph.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/common/geometry/Subgraph.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/graph_builder/annotation/GraphConnectivity.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/graph_builder/annotation/GraphConnectivity.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/core/RoutingRequest.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/core/RoutingRequest.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/core/State.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/core/State.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/core/TraverseMode.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/core/TraverseMode.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/core/TraverseModeSet.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/core/TraverseModeSet.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/graph/Edge.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/graph/Edge.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/graph/Graph.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/graph/Graph.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/graph/Vertex.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/graph/Vertex.java
+    # Child of StreetUtils.class
+    - dir: target/classes
+      file: org/opentripplanner/routing/vertextype/StreetVertex.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/routing/vertextype/StreetVertex.java
+  - target:
+    - dir: target/classes
+      file: org/opentripplanner/common/Histogram.class
+      sourceDir: src/main/java
+      sourceFile: org/opentripplanner/common/Histogram.java
+phases:
+-
+  timeout: 60
+  cbmcArguments:
+    max-nondet-array-length: 10
+    unwind: 1
+    string-non-empty: true
+    java-assume-inputs-non-null: true
+-
+  timeout: 60
+  cbmcArguments:
+    classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 10
+    unwind: 1
+-
+  timeout: 60
+  cbmcArguments:
+    classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 20
+    unwind: 2
+    string-non-empty: true
+    java-assume-inputs-non-null: true
+-
+  timeout: 60
+  cbmcArguments:
+    classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 20
+    unwind: 2
+-
+  timeout: 60
+  cbmcArguments:
+    classpath: '/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 30
+    max-nondet-string-length: 10
+    unwind: 3
+    string-non-empty: true
+    java-assume-inputs-non-null: true
+-
+  timeout: 60
+  cbmcArguments:
+    classpath: '/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 30
+    max-nondet-string-length: 10
+    unwind: 3
+-
+  timeout: 120
+  cbmcArguments:
+    classpath: '/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 30
+    max-nondet-string-length: 10
+    unwind: 4
+    load-containing-class-only: true
+    string-non-empty: true
+    java-assume-inputs-non-null: true
+-
+  timeout: 120
+  cbmcArguments:
+    classpath: '/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 50
+    max-nondet-string-length: 50
+    unwind: 4
+    load-containing-class-only: true
+-
+  timeout: 120
+  cbmcArguments:
+    classpath: '/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 130
+    max-nondet-string-length: 110
+    unwind: 10
+    string-non-empty: true
+    java-assume-inputs-non-null: true
+-
+  timeout: 120
+  cbmcArguments:
+    classpath: '/tools/cbmc/models.jar:.'
+    max-nondet-array-length: 300
+    max-nondet-string-length: 100
+    unwind: 10
